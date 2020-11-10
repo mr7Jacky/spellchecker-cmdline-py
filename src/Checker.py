@@ -70,14 +70,10 @@ class Checker:
         @rtype: int
         @return: a number indicating the number of common characters in both input strings
         """
-        # find the length of the strings
         m = len(first_str)
         n = len(second_str)
-
-        # declaring the array for storing the dp values
         C = [[0] * (n + 1)] * (m + 1)
 
-        # Button up
         for i in range(m + 1):
             for j in range(n + 1):
                 if i == 0 or j == 0:
@@ -87,7 +83,6 @@ class Checker:
                 else:
                     C[i][j] = max(C[i - 1][j], C[i][j - 1])
 
-        # L[m][n] contains the length of LCS
         return C[m][n]
 
     @staticmethod
