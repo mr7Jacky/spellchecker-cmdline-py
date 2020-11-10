@@ -9,7 +9,7 @@ def print_instruction():
 
 def main():
     if len(sys.argv) != 3:
-		print_instruction()
+	print_instruction()
         sys.exit()
     in_type = sys.argv[1]
     usr_in = sys.argv[2]

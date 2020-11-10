@@ -5,13 +5,13 @@ MIT license: www.opensource.org/licenses/mit-license.php
 """
 
 ################ Spelling Corrector 
-
+import sys
 import re
 from collections import Counter
 
 def words(text): return re.findall(r'\w+', text.lower())
 
-WORDS = Counter(words(open('big.txt').read()))
+WORDS = Counter(words(open('wordlist.txt').read()))
 
 def P(word, N=sum(WORDS.values())): 
     "Probability of `word`."
@@ -44,7 +44,7 @@ def edits2(word):
     return (e2 for e1 in edits1(word) for e2 in edits1(e1))
 
 ################ Test Code 
-
+"""
 def unit_tests():
     assert correction('speling') == 'spelling'              # insert
     assert correction('korrectud') == 'corrected'           # replace 2
@@ -99,8 +99,12 @@ def Testset(lines):
     return [(right, wrong)
             for (right, wrongs) in (line.split(':') for line in lines)
             for wrong in wrongs.split()]
+"""
+def main():
+    print("Correction: ")
+    print(correction(sys.argv[1]))
+    print("Candidates: ")
+    print(candidates(sys.argv[1]))
 
 if __name__ == '__main__':
-    print(unit_tests())
-    spelltest(Testset(open('spell-testset1.txt')))
-    spelltest(Testset(open('spell-testset2.txt')))
+    main()
