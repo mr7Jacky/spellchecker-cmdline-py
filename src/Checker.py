@@ -75,9 +75,9 @@ class Checker:
         n = len(second_str)
 
         # declaring the array for storing the dp values
-        C = [[None] * (n + 1) for i in range(m + 1)]
+        C = [[0] * (n + 1)] * (m + 1)
 
-        # Buttom up
+        # Button up
         for i in range(m + 1):
             for j in range(n + 1):
                 if i == 0 or j == 0:
