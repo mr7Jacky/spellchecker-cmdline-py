@@ -1,5 +1,5 @@
 import sys
-from .src import Checker
+from src.Checker import Checker
 
 
 def print_instruction():
@@ -13,12 +13,16 @@ def main():
     if len(sys.argv) != 3:
         print_instruction()
         sys.exit()
+    # test word list
+    wordlist = {"hello", "world", "spell", "checker"}
     chk = Checker(wordlist)
-    in_type = sys.argv[1]
+    in_type = int(sys.argv[1])
     usr_in = sys.argv[2]
     if in_type == 1:
-        cor_str = chk.str_checker(usr_in)
-        print("Correction: %s" % (cor_str))
+        usr_in = usr_in.split()
+        for word in usr_in:
+            cor_str = chk.str_checker(word)
+            print("Correction %s --> %s" % (word,cor_str))
     elif in_type == 2:
         chk.file_checker(usr_in)
         print("Saving corrected file to %s_cort.txt" % (usr_in[:-4]))

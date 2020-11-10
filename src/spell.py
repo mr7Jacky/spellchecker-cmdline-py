@@ -27,7 +27,9 @@ def candidates(word):
 
 def known(words): 
     "The subset of `words` that appear in the dictionary of WORDS."
-    return set(w for w in words if w in WORDS)
+    s = set(w for w in words if w in WORDS)
+    print(s)
+    return s
 
 def edits1(word):
     "All edits that are one edit away from `word`."
