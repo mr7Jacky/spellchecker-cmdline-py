@@ -44,4 +44,4 @@ A data structure contains necessary functions to support Checker, including:
 
 #### Reference 
 
-1. [norvig.com](www.norvig.com/spell-correct.html)
+1. [norvig.com](https://www.norvig.com/spell-correct.html)
