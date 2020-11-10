@@ -1,7 +1,7 @@
 import sys
 from src.Checker import Checker
-
-
+from collections import Counter
+import re
 def print_instruction():
     print("Usage: run.py [mode] [input]")
     print("Parameter [mode] can be either 1 for string or 2 for text file.")
@@ -14,7 +14,7 @@ def main():
         print_instruction()
         sys.exit()
     # test word list
-    wordlist = {"hello", "world", "spell", "checker"}
+    wordlist = Counter(re.findall(r'\w+', open('wordlist.txt').read().lower()))
     chk = Checker(wordlist)
     in_type = int(sys.argv[1])
     usr_in = sys.argv[2]
@@ -22,7 +22,8 @@ def main():
         usr_in = usr_in.split()
         for word in usr_in:
             cor_str = chk.str_checker(word)
-            print("Correction %s --> %s" % (word,cor_str))
+            print("Correction %s --> %s" % (word, cor_str[0]))
+            print("Other candidates: %s" % cor_str)
     elif in_type == 2:
         chk.file_checker(usr_in)
         print("Saving corrected file to %s_cort.txt" % (usr_in[:-4]))

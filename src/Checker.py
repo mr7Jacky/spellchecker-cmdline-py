@@ -13,13 +13,15 @@ class Checker:
         """ Check the spelling for given string, if not in wordlist, find the similar ones
         @type str_in: str
         @param str_in: target string to check
-        @rtype: set
-        @return: a set of possible string
+        @rtype: list
+        @return: a list of possible string
         """
         if str_in in self.wordlist:
-            return {str_in}
+            return [str_in]
         possible_words = Checker.generate_possible_words(str_in)
         candidates = self.linear_search(possible_words, str_in, self.num_candidates)
+        if len(candidates) == 0:
+            candidates = self.linear_search(self.wordlist,str_in, self.num_candidates)
         return candidates
 
     def file_checker(self, usr_in):
@@ -47,12 +49,14 @@ class Checker:
         @param target: the string to compare
         @type num_candidates: int
         @param num_candidates: top n number words will be return
-        @rtype: set
+        @rtype: list
         @return: a number indicating the number of common characters in both input strings
         """
         candidates = set(word for word in search_area if word in self.wordlist)
-        #TODO - add function to top n candidates based on lcs score
-        return candidates
+        # get top n candidates based on lcs score
+        sorted(candidates, key=lambda x: Checker.lcs(x, target))
+        ret = list(candidates)[0:num_candidates]
+        return ret
 
     @staticmethod
     def lcs(first_str, second_str) -> int:
