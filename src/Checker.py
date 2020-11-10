@@ -4,7 +4,9 @@ class Checker:
     def __init__(self, wordlist, num_candidates=5):
         """ Initialize function for Checker class
         @type wordlist: HashTable
-        @param first_str: a dictionary contains all available words
+        @param wordlist: a dictionary contains all available words
+        @type num_candidates: int
+        @param num_candidates: the number of candidates to generate
         """
         self.wordlist = wordlist
         self.num_candidates = num_candidates
@@ -24,21 +26,14 @@ class Checker:
             candidates = self.linear_search(self.wordlist,str_in, self.num_candidates)
         return candidates
 
-    def file_checker(self, usr_in):
-        """ Function to check the longest common subsequence of two string
+    def file_checker(self, path):
+        """ Check the spelling for each word in given file, if not in wordlist, find the similar ones
 
-        Dynamic programming buttom-up version of longest common subsequence
-        runtime O(mn)
-        where:
-            m is the length of first string
-            n is the length of second string
-        @type first_str: str
-        @param first_str: the first string to compare
-        @type second_str: str
-        @param second_str: the first string to compare
-        @rtype: int
-        @return: a number indicating the number of common characters in both input strings
+        It will generate a new corrected spelling file in the same directory provided.
+        @type path: str
+        @param path: path to the file
         """
+        # TODO - implement
         pass
 
     def linear_search(self, search_area, target, num_candidates):
@@ -54,7 +49,7 @@ class Checker:
         """
         candidates = set(word for word in search_area if word in self.wordlist)
         # get top n candidates based on lcs score
-        sorted(candidates, key=lambda x: Checker.lcs(x, target))
+        sorted(candidates, key=lambda x: Checker.lcs(x, target)) # TODO - Use Mergesort instead of build-in sorted
         ret = list(candidates)[0:num_candidates]
         return ret
 

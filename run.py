@@ -14,7 +14,7 @@ def main():
         print_instruction()
         sys.exit()
     # test word list
-    wordlist = Counter(re.findall(r'\w+', open('wordlist.txt').read().lower()))
+    wordlist = Counter(re.findall(r'\w+', open('dict/allWords.txt').read().lower()))
     chk = Checker(wordlist)
     in_type = int(sys.argv[1])
     usr_in = sys.argv[2]

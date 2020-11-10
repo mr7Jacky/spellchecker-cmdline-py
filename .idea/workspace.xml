@@ -20,11 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed265d88-6bd9-45b6-b4f3-10bbda5a4840" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dict/allWords.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Checker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/spell.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/spell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wordlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/wordlist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict/wordlist.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +45,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dict" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
