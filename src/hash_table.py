@@ -10,8 +10,8 @@ def fill_hash_table():
     for line in f:
         line = line.strip()
         ascii_sum = 0
-        for char in line:
-            ascii_sum += ord(char)
+        for i in range(0, int(len(line)/2) + 1):
+            ascii_sum += ord(line[i])
         #print(ascii_sum)
         insert(ascii_sum, line)            
     #print(len(words_list))
