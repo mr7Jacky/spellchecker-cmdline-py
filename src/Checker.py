@@ -24,6 +24,7 @@ class Checker:
         candidates = self.linear_search(possible_words, str_in, self.num_candidates)
         if len(candidates) == 0:
             candidates = self.linear_search(self.wordlist,str_in, self.num_candidates)
+        # TODO - add keyboard layout prediction
         return candidates
 
     def file_checker(self, path):
@@ -33,7 +34,7 @@ class Checker:
         @type path: str
         @param path: path to the file
         """
-
+        # TODO - add progress bar
         fileName = path.split('.')[0]
         with open(path, 'r') as src_file, open(f'{fileName}_cort.txt', 'w+') as corrected_file:
             for line in src_file:

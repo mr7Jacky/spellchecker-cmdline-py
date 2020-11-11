@@ -1,31 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed265d88-6bd9-45b6-b4f3-10bbda5a4840" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dict/allWords.txt" afterDir="false" />
+    <list default="true" id="060887cb-c650-4e10-a3ea-dddaba2a50b4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/spellchecker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spellchecker.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict/allWords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict/allWords.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Checker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spell.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/spell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict/wordlist.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1k6IpuGDJsCbWrHyQmEbV9U0YLx" />
+  <component name="ProjectId" id="1k836zioaDQTcTnHeRWSZCqt8fn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,85 +25,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/dict" />
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="spellchecker" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.run" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ed265d88-6bd9-45b6-b4f3-10bbda5a4840" name="Default Changelist" comment="" />
-      <created>1605014803386</created>
+      <changelist id="060887cb-c650-4e10-a3ea-dddaba2a50b4" name="Default Changelist" comment="" />
+      <created>1605068221936</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1605014803386</updated>
+      <updated>1605068221936</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1377" height="258" key="GridCell.Tab.0.bottom" timestamp="1605038635875">
-      <screen x="72" y="27" width="1848" height="1053" />
-    </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1605038635875" />
-    <state width="1377" height="258" key="GridCell.Tab.0.center" timestamp="1605038635875">
-      <screen x="72" y="27" width="1848" height="1053" />
-    </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1605038635875" />
-    <state width="1377" height="258" key="GridCell.Tab.0.left" timestamp="1605038635874">
-      <screen x="72" y="27" width="1848" height="1053" />
-    </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1605038635874" />
-    <state width="1377" height="258" key="GridCell.Tab.0.right" timestamp="1605038635875">
-      <screen x="72" y="27" width="1848" height="1053" />
-    </state>
-    <state width="1377" height="258" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1605038635875" />
-    <state x="827" y="442" width="428" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605038467497">
-      <screen x="72" y="27" width="1848" height="1053" />
-    </state>
-    <state x="827" y="442" width="428" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/72.27.1848.1053@72.27.1848.1053" timestamp="1605038467497" />
-    <state x="709" y="246" width="672" height="678" key="search.everywhere.popup" timestamp="1605014914001">
-      <screen x="72" y="27" width="1848" height="1053" />
-    </state>
-    <state x="709" y="246" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1605014914001" />
   </component>
 </project>
