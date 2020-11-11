@@ -17,7 +17,7 @@ The second input is the string or the `.txt` file you want to check, it is eithe
 
 #### Structure of project
 
-This project composite with 3 main part:
+This project composite with 3 main parts:
 
 1. A Checker 
 2. A Data Structure (Dictionary)
@@ -34,7 +34,7 @@ A class provides all related function to spell check, including:
 
 ##### Dictionary
 
-A data structure contains necessary functions to support Checker, including:
+A data structure that contains necessary functions to support Checker, including:
 
 1. ...
 

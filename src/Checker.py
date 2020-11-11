@@ -33,8 +33,14 @@ class Checker:
         @type path: str
         @param path: path to the file
         """
-        # TODO - implement
-        pass
+        with open(path, 'r') as src_file, open('s_cort.txt', 'w+') as corrected_file:
+            for line in src_file:
+                for word in line.split():
+                    print(self.str_checker(word))
+                    line = line.replace(word, self.str_checker(word)[0])
+                corrected_file.write(line)
+
+        
 
     def linear_search(self, search_area, target, num_candidates):
         """ Linearly search the target within the given set based on lcs
