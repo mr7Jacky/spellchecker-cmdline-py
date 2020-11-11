@@ -33,11 +33,13 @@ class Checker:
         @type path: str
         @param path: path to the file
         """
-        with open(path, 'r') as src_file, open('s_cort.txt', 'w+') as corrected_file:
+
+        fileName = path.split('.')[0]
+        with open(path, 'r') as src_file, open(f'{fileName}_cort.txt', 'w+') as corrected_file:
             for line in src_file:
                 for word in line.split():
-                    print(self.str_checker(word))
-                    line = line.replace(word, self.str_checker(word)[0])
+                    # print ('Word: '+word+' options: ' + str(self.str_checker(word.lower())))
+                    line = line.replace(word, self.str_checker(word.lower())[0])
                 corrected_file.write(line)
 
         
