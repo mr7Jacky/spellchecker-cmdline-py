@@ -1,3 +1,7 @@
+import sys
+import time
+
+
 class Checker:
     """ Checker class provides helper function to check the spelling"""
 
@@ -23,8 +27,7 @@ class Checker:
         possible_words = Checker.generate_possible_words(str_in)
         candidates = self.linear_search(possible_words, str_in, self.num_candidates)
         if len(candidates) == 0:
-            candidates = self.linear_search(self.wordlist,str_in, self.num_candidates)
-        # TODO - add keyboard layout prediction
+            candidates = self.linear_search(self.wordlist, str_in, self.num_candidates)
         return candidates
 
     def file_checker(self, path):
@@ -34,16 +37,29 @@ class Checker:
         @type path: str
         @param path: path to the file
         """
-        # TODO - add progress bar
-        fileName = path.split('.')[0]
-        with open(path, 'r') as src_file, open(f'{fileName}_cort.txt', 'w+') as corrected_file:
-            for line in src_file:
+        # add progress bar
+        toolbar_width = 50
+        count = 0
+        # setup toolbar
+        sys.stdout.write("%6.2f%%|%s|" % (0, (" " * toolbar_width)))
+        sys.stdout.flush()
+
+        # correct spelling
+        file_name = path.split('.')[0]
+        with open(path, 'r') as src_file, open(f'{file_name}_cort.txt', 'w+') as corrected_file:
+            dna = src_file.readlines()
+            for line in dna:
                 for word in line.split():
                     # print ('Word: '+word+' options: ' + str(self.str_checker(word.lower())))
                     line = line.replace(word, self.str_checker(word.lower())[0])
                 corrected_file.write(line)
-
-        
+                # update the bar
+                count += 1
+                sys.stdout.write('\r')
+                percent = float(count / len(dna))
+                sys.stdout.write("%6.2f%%|%s>" % (percent * 100, ("=" * int(percent * 50))))
+                sys.stdout.flush()
+            sys.stdout.write("|\n")  # this ends the progress bar ■
 
     def linear_search(self, search_area, target, num_candidates):
         """ Linearly search the target within the given set based on lcs
@@ -58,7 +74,7 @@ class Checker:
         """
         candidates = set(word for word in search_area if word in self.wordlist)
         # get top n candidates based on lcs score
-        sorted(candidates, key=lambda x: Checker.lcs(x, target)) # TODO - Use Mergesort instead of build-in sorted
+        sorted(candidates, key=lambda x: Checker.lcs(x, target))  # TODO - Use Mergesort instead of build-in sorted
         ret = list(candidates)[0:num_candidates]
         return ret
 
@@ -102,9 +118,17 @@ class Checker:
         @return: a set of all possible words related to given word
         """
         letters = 'abcdefghijklmnopqrstuvwxyz'
+        surround_letter = {'q': 'wa', 'w': 'qse', 'e': 'wdr', 'r': 'etf', 't': 'rgy', 'y': 'thu', 'u': 'yji',
+                           'i': 'uko', 'o': 'ilp', 'p': 'ol', 'a': 'sqz', 's': 'waxd', 'd': 'serfcx', 'f': 'rtgdvc',
+                           'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'ok', '.': '.', ',': ',',
+                           'z': 'axs', 'x': 'zcsd', 'c': 'xdfv', 'v': 'cfgb', 'b': 'vghn', 'n': 'bhjm', 'm': 'njk'}
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
         deletes = [L + R[1:] for L, R in splits if R]
         transposes = [L + R[1] + R[0] + R[2:] for L, R in splits if len(R) > 1]
-        replaces = [L + c + R[1:] for L, R in splits if R for c in letters]
+        # replace by the near by key
+        replaces = [L + c + R[1:] for L, R in splits if R for c in surround_letter.get(R[0])]
+        # replace by all letter
+        # replaces = [L + c + R[1:] for L, R in splits if R for c in letters]
         inserts = [L + c + R for L, R in splits for c in letters]
         return set(deletes + transposes + replaces + inserts)
+#
