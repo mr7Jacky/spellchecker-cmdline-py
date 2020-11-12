@@ -104,7 +104,7 @@ class Checker:
         """
         candidates = list(set(word for word in search_area if word in self.wordlist))
         # get top n candidates based on lcs score
-        #candidates = sorted(candidates, key=lambda x: Checker.lcs(target, x), reverse=True)
+        # candidates = sorted(candidates, key=lambda x: Checker.lcs(target, x), reverse=True)
         Checker.merge_sort_lcs(candidates, 0, len(candidates)-1, target)
         # TODO - Use Mergesort instead of build-in sorted
         ret = list(candidates)[0:num_candidates]
@@ -122,23 +122,16 @@ class Checker:
     def __merge_lcs(arr, l, m, r, target):
         n1 = m - l + 1
         n2 = r - m
-
         # create temp arrays
-        L = [0] * (n1)
-        R = [0] * (n2)
-
+        L = [0] * n1
+        R = [0] * n2
         # Copy data to temp arrays L[] and R[]
-        for i in range(0 , n1):
-            L[i] = arr[l + i]
-
-        for j in range(0 , n2):
+        for i in range(0, n1):
+            L[i] = arr[l, i]
+        for j in range(0, n2):
             R[j] = arr[m + 1 + j]
-
         # Merge the temp arrays back into arr[l..r]
-        i = 0     # Initial index of first subarray
-        j = 0     # Initial index of second subarray
-        k = l     # Initial index of merged subarray
-
+        i, j, k = 0, 0, l
         while i < n1 and j < n2:
             if Checker.lcs(target, L[i]) >= Checker.lcs(target,R[j]):
                 arr[k] = L[i]
@@ -147,12 +140,10 @@ class Checker:
                 arr[k] = R[j]
                 j += 1
             k += 1
-
         while i < n1:
             arr[k] = L[i]
             i += 1
             k += 1
-
         while j < n2:
             arr[k] = R[j]
             j += 1
