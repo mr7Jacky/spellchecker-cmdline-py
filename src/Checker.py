@@ -1,5 +1,4 @@
 import sys
-import re
 
 
 class Checker:
@@ -103,11 +102,61 @@ class Checker:
         @rtype: list
         @return: a number indicating the number of common characters in both input strings
         """
-        candidates = set(word for word in search_area if word in self.wordlist)
+        candidates = list(set(word for word in search_area if word in self.wordlist))
         # get top n candidates based on lcs score
-        sorted(candidates, key=lambda x: Checker.lcs(x, target))  # TODO - Use Mergesort instead of build-in sorted
+        #candidates = sorted(candidates, key=lambda x: Checker.lcs(target, x), reverse=True)
+        Checker.merge_sort_lcs(candidates, 0, len(candidates)-1, target)
+        # TODO - Use Mergesort instead of build-in sorted
         ret = list(candidates)[0:num_candidates]
         return ret
+
+    @staticmethod
+    def merge_sort_lcs(arr, l, r, target):
+        if l < r:
+            m = (l+(r-1))//2
+            Checker.merge_sort_lcs(arr, l, m, target)
+            Checker.merge_sort_lcs(arr, m+1, r, target)
+            Checker.__merge_lcs(arr, l, m, r, target)
+
+    @staticmethod
+    def __merge_lcs(arr, l, m, r, target):
+        n1 = m - l + 1
+        n2 = r - m
+
+        # create temp arrays
+        L = [0] * (n1)
+        R = [0] * (n2)
+
+        # Copy data to temp arrays L[] and R[]
+        for i in range(0 , n1):
+            L[i] = arr[l + i]
+
+        for j in range(0 , n2):
+            R[j] = arr[m + 1 + j]
+
+        # Merge the temp arrays back into arr[l..r]
+        i = 0     # Initial index of first subarray
+        j = 0     # Initial index of second subarray
+        k = l     # Initial index of merged subarray
+
+        while i < n1 and j < n2:
+            if Checker.lcs(target, L[i]) >= Checker.lcs(target,R[j]):
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
+        while i < n1:
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < n2:
+            arr[k] = R[j]
+            j += 1
+            k += 1
 
     @staticmethod
     def lcs(first_str, second_str) -> int:
@@ -148,9 +197,19 @@ class Checker:
         @rtype: set
         @return: a set of all possible words related to given word
         """
+        return Checker.__one_letter_diff(word).union(Checker.__two_letter_diff(word))
+
+    @staticmethod
+    def __one_letter_diff(word):
+        """ Generate all words that is one letter different from word
+        @type word: str
+        @param word: the input word
+        @rtype: set
+        @return: a set of words with one letter differing from input word
+        """
         letters = 'abcdefghijklmnopqrstuvwxyz'
-        surround_letter = {'q': 'wa', 'w': 'qse', 'e': 'wdr', 'r': 'etf', 't': 'rgy', 'y': 'thu', 'u': 'yji',
-                           'i': 'uko', 'o': 'ilp', 'p': 'ol', 'a': 'sqz', 's': 'waxd', 'd': 'serfcx', 'f': 'rtgdvc',
+        surround_letter = {'q': 'wa', 'w': 'qase', 'e': 'wsdr', 'r': 'etdf', 't': 'rfgy', 'y': 'tghu', 'u': 'yjhi',
+                           'i': 'uko', 'o': 'ilkp', 'p': 'ol', 'a': 'sqwz', 's': 'waxzd', 'd': 'serfcx', 'f': 'rtgdvc',
                            'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'ok',
                            'z': 'axs', 'x': 'zcsd', 'c': 'xdfv', 'v': 'cfgb', 'b': 'vghn', 'n': 'bhjm', 'm': 'njk'}
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
@@ -161,5 +220,15 @@ class Checker:
         # replace by all letter
         # replaces = [L + c + R[1:] for L, R in splits if R for c in letters]
         inserts = [L + c + R for L, R in splits for c in letters]
+
         return set(deletes + transposes + replaces + inserts)
-#
+
+    @staticmethod
+    def __two_letter_diff(word):
+        """ Generate all words that is two letter different from word
+        @type word: str
+        @param word: the input word
+        @rtype: set
+        @return: a set of words with 2 letter differing from input word
+        """
+        return set(e2 for e1 in Checker.__one_letter_diff(word) for e2 in Checker.__one_letter_diff(e1))

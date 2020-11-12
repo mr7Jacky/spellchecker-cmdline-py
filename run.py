@@ -2,6 +2,7 @@ import sys
 from src.Checker import Checker
 from collections import Counter
 import re
+
 def print_instruction():
     print("Usage: run.py [mode] [input]")
     print("Parameter [mode] can be either 1 for string or 2 for text file.")
