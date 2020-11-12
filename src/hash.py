@@ -6,6 +6,7 @@ class HashTable:
         self.capacity = length
         self.maxLoad = 0.75
         self.numItems = 0
+        self.iter_ptr = 0
 
     def size(self):
         return self.numItems
@@ -23,7 +24,17 @@ class HashTable:
                 if self.array[index][i] == key:
                     return True
         return False
-        
+    
+    def __contains__(self,item):
+        return self.search(item)
+    
+    def __iter__(self):
+        return self.array[self.iter_ptr]
+
+    def __next__(self):
+        self.iter_ptr += 1
+        return self.iter_ptr - 1
+
     def add(self, key):
         if not self.search(key):
             index = self.hash(key)
