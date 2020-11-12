@@ -1,5 +1,5 @@
 import sys
-import time
+import re
 
 
 class Checker:
@@ -47,19 +47,50 @@ class Checker:
         # correct spelling
         file_name = path.split('.')[0]
         with open(path, 'r') as src_file, open(f'{file_name}_cort.txt', 'w+') as corrected_file:
-            dna = src_file.readlines()
-            for line in dna:
-                for word in line.split():
-                    # print ('Word: '+word+' options: ' + str(self.str_checker(word.lower())))
-                    line = line.replace(word, self.str_checker(word.lower())[0])
-                corrected_file.write(line)
+            lines = src_file.readlines()
+            for line in lines:
+                line = self.split_helper(line, 0)
                 # update the bar
                 count += 1
                 sys.stdout.write('\r')
-                percent = float(count / len(dna))
+                percent = float(count / len(lines))
                 sys.stdout.write("%6.2f%%|%s>" % (percent * 100, ("=" * int(percent * 50))))
                 sys.stdout.flush()
+                # write to the end of line
+                corrected_file.write(line)
+                corrected_file.write('\n')
             sys.stdout.write("|\n")  # this ends the progress bar ■
+
+    def split_helper(self, in_str, split_index):
+        """ Helper function to split sentence by sentence and comma by comma
+        @type in_str: str
+        @param in_str: string to split
+        @type split_index: int
+        @param split_index: use to choose level of split (sentence or comma or word)
+        """
+        split_order = ['.', ',', '']
+        ret = ''
+        delimiter = split_order[split_index]
+        if delimiter == '':
+            strings = in_str.split()
+        else:
+            strings = in_str.split(delimiter)
+        for i in range(len(strings)):
+            string = strings[i]
+            if split_index == (len(split_order) - 1):
+                # word mode
+                lowered_word = string.lower()
+                replaced_word = self.str_checker(lowered_word)[0]
+                if lowered_word[0] != string[0]:
+                    # check if capitalized
+                    replaced_word = replaced_word.capitalize()
+                ret += replaced_word
+            else:
+                ret += self.split_helper(string, split_index + 1)
+            if len(strings)-1 == i:
+                break
+            ret += split_order[split_index] + ' '
+        return ret
 
     def linear_search(self, search_area, target, num_candidates):
         """ Linearly search the target within the given set based on lcs
@@ -120,7 +151,7 @@ class Checker:
         letters = 'abcdefghijklmnopqrstuvwxyz'
         surround_letter = {'q': 'wa', 'w': 'qse', 'e': 'wdr', 'r': 'etf', 't': 'rgy', 'y': 'thu', 'u': 'yji',
                            'i': 'uko', 'o': 'ilp', 'p': 'ol', 'a': 'sqz', 's': 'waxd', 'd': 'serfcx', 'f': 'rtgdvc',
-                           'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'ok', '.': '.', ',': ',',
+                           'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'ok',
                            'z': 'axs', 'x': 'zcsd', 'c': 'xdfv', 'v': 'cfgb', 'b': 'vghn', 'n': 'bhjm', 'm': 'njk'}
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
         deletes = [L + R[1:] for L, R in splits if R]
