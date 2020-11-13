@@ -102,11 +102,10 @@ class Checker:
         @rtype: list
         @return: a number indicating the number of common characters in both input strings
         """
-        candidates = list(set(word for word in search_area if word in self.wordlist))
+        candidates = list(word for word in search_area if word in self.wordlist)
         # get top n candidates based on lcs score
         # candidates = sorted(candidates, key=lambda x: Checker.lcs(target, x), reverse=True)
         Checker.merge_sort_lcs(candidates, 0, len(candidates)-1, target)
-        # TODO - Use Mergesort instead of build-in sorted
         ret = list(candidates)[0:num_candidates]
         return ret
 
