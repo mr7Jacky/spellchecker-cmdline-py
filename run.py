@@ -2,6 +2,10 @@ import sys
 from src.Checker import Checker
 from collections import Counter
 import re
+from os import path
+import pickle
+import csv
+
 
 def print_instruction():
     print("Usage: run.py [mode] [input]")
@@ -10,12 +14,29 @@ def print_instruction():
     print("If mode is 2, enter the path to [input] text file.")
 
 
+def store_data():
+    wordlist = Counter(re.findall(r'\w+', open('dict/allWords.txt').read().lower()))
+    # Its important to use binary mode
+    file = open('dict/dictionary', 'ab')
+    # source, destination
+    pickle.dump(wordlist, file)
+    file.close()
+
+
+def load_data():
+    # for reading also binary mode is important
+    file = open('dict/dictionary', 'rb')
+    return pickle.load(file)
+
+
 def main():
     if len(sys.argv) != 3:
         print_instruction()
         sys.exit()
     # test word list
-    wordlist = Counter(re.findall(r'\w+', open('dict/allWords.txt').read().lower()))
+    if not path.exists("dict/dictionary"):
+        store_data()
+    wordlist = load_data()
     chk = Checker(wordlist)
     in_type = int(sys.argv[1])
     usr_in = sys.argv[2]
@@ -34,4 +55,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with open('dict/allWords.csv') as csvfile:
+        readCSV = csv.reader(csvfile, delimiter=',')
+        s = set()
+        for row in readCSV:
+            freq = int(''.join(row[2].split(',')))
+            print(int(freq))
+

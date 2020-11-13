@@ -104,7 +104,7 @@ class Checker:
         """
         candidates = list(word for word in search_area if word in self.wordlist)
         # get top n candidates based on lcs score
-        # candidates = sorted(candidates, key=lambda x: Checker.lcs(target, x), reverse=True)
+        # candidates = sorted(candidates, target=lambda x: Checker.lcs(target, x), reverse=True)
         Checker.merge_sort_lcs(candidates, 0, len(candidates)-1, target)
         ret = list(candidates)[0:num_candidates]
         return ret
@@ -126,7 +126,7 @@ class Checker:
         R = [0] * n2
         # Copy data to temp arrays L[] and R[]
         for i in range(0, n1):
-            L[i] = arr[l, i]
+            L[i] = arr[l + i]
         for j in range(0, n2):
             R[j] = arr[m + 1 + j]
         # Merge the temp arrays back into arr[l..r]
@@ -205,7 +205,7 @@ class Checker:
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
         deletes = [L + R[1:] for L, R in splits if R]
         transposes = [L + R[1] + R[0] + R[2:] for L, R in splits if len(R) > 1]
-        # replace by the near by key
+        # replace by the near by target
         replaces = [L + c + R[1:] for L, R in splits if R for c in surround_letter.get(R[0])]
         # replace by all letter
         # replaces = [L + c + R[1:] for L, R in splits if R for c in letters]

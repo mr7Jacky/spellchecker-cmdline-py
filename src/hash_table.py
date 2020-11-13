@@ -31,7 +31,7 @@ def display_hash(hashTable):
     # Hashing Function to return
 
 
-# key for every value.
+# target for every value.
 def Hashing(keyvalue):
     return keyvalue % len(HashTable)
 
