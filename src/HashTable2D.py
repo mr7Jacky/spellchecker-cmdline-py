@@ -1,6 +1,7 @@
 import csv
 from src.HashTable import HashTable
 from src.Word import Word
+import os.path
 
 
 class HashTable2D:
@@ -9,13 +10,10 @@ class HashTable2D:
         self.hash_tables = [HashTable(20) for _ in range(26)]
 
     def __str__(self):
-        """
-        TODO - NOT WORKING
-        """
         s = ''
         for i in range(len(self.hash_tables)):
             s += ("Table %s\n" % (chr(i + ord('a'))))
-
+            s += str(self.hash_tables[i])
         return s
 
     # target for every value.
@@ -42,19 +40,21 @@ class HashTable2D:
         idx = self.__hash(target[0])
         return self.hash_tables[idx].search(target)
 
-
-def fill_hash_table(h):
-    """
-    @type h: HashTable2D
-    """
-    with open('../dict/allWords.csv') as csvfile:
-        readCSV = csv.reader(csvfile, delimiter=',')
-        count = 0
-        for row in readCSV:
-            freq = int(''.join(row[2].split(',')))
-            count += 1
-            print("Insert %dth %s" % (count,row[0]))
-            h.insert(row[0].lower(), freq)
+    def fill_hash_table(self, file_name):
+        """
+        @type file_name: str
+        """
+        if not os.path.exists(file_name):
+            print("FAIL TO OPEN THE FILE")
+            exit(-1)
+        with open(file_name) as csvfile:
+            readCSV = csv.reader(csvfile, delimiter=',')
+            count = 0
+            for row in readCSV:
+                freq = int(''.join(row[2].split(',')))
+                count += 1
+                print("Insert %dth %s" % (count, row[0]))
+                self.insert(row[0].lower(), freq)
 
 
 if __name__ == "__main__":
@@ -62,11 +62,5 @@ if __name__ == "__main__":
     # number_of_words = size_of_table()
     # print(number_of_words)
     h = HashTable2D()  # initialize the hash table
-    h.insert("haha",1)
-    h.insert("ahah",2)
-    h.insert("hehe",3)
-    h.insert("hahz",4)
-    h.insert('b',5)
+    h.fill_hash_table('../dict/allWords.csv')
     print(h)
-    print(h.search('hahz'))
-    print(h.search('a'))

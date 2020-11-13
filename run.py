@@ -1,10 +1,10 @@
 import sys
 from src.Checker import Checker
+from src.HashTable2D import HashTable2D
 from collections import Counter
 import re
 from os import path
 import pickle
-import csv
 
 
 def print_instruction():
@@ -55,10 +55,5 @@ def main():
 
 
 if __name__ == "__main__":
-    with open('dict/allWords.csv') as csvfile:
-        readCSV = csv.reader(csvfile, delimiter=',')
-        s = set()
-        for row in readCSV:
-            freq = int(''.join(row[2].split(',')))
-            print(int(freq))
+    main()
 

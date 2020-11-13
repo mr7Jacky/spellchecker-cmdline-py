@@ -73,6 +73,18 @@ class HashTable:
             s += '\n'
         return s[:-1]
 
+    def __repr__(self):
+        s = ''
+        for i in range(len(self.array)):
+            s += str(i) + ' '
+            for j in self.array[i]:
+                s += '--> ' + j.word + ' '
+            s += '\n'
+        return s
+
+
+
+
 
 if __name__ == "__main__":
     h = HashTable()
