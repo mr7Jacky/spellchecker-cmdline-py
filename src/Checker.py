@@ -80,7 +80,6 @@ class Checker:
             if split_index == (len(split_order) - 1):
                 # word mode
                 lowered_word = string.lower()
-                print(len(lowered_word))
                 replaced_word = self.str_checker(lowered_word)[0]
                 if lowered_word[0] != string[0]:
                     # check if capitalized
@@ -104,7 +103,7 @@ class Checker:
         @rtype: list
         @return: a number indicating the number of common characters in both input strings
         """
-        candidates = list(word for word in search_area if word in self.wordlist)
+        candidates = [word for word in search_area if word in self.wordlist]
         # get top n candidates based on lcs score
         self.merge_sort_lcs(candidates, 0, len(candidates)-1, target)
         ret = list(candidates)[0:num_candidates]
@@ -206,6 +205,7 @@ class Checker:
                            'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'pok',
                            'z': 'axs', 'x': 'zcsd', 'c': 'xdfv', 'v': 'cfgb', 'b': 'vghn', 'n': 'bhjm', 'm': 'njk'}
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
+
         deletes = [L + R[1:] for L, R in splits if R]
         transposes = [L + R[1] + R[0] + R[2:] for L, R in splits if len(R) > 1]
         # replace by the near by target

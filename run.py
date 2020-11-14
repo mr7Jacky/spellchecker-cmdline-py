@@ -42,7 +42,7 @@ def main():
     if in_type == 1:
         usr_in = usr_in.split()
         for word in usr_in:
-            cor_str = chk.str_checker(word)
+            cor_str = chk.str_checker(word.lower())
             print("Correction %s --> %s" % (word, cor_str[0]))
             print("Other candidates: %s" % cor_str)
     elif in_type == 2:
@@ -55,4 +55,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

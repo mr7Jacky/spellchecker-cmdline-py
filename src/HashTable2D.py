@@ -39,8 +39,11 @@ class HashTable2D:
 
     def search(self, target):
         """
+        @type target:str
         @rtype : Word
         """
+        if target == '':
+            return None
         idx = self.__hash(target[0])
         return self.hash_tables[idx].search(target)
 
@@ -65,7 +68,7 @@ class HashTable2D:
                 count += 1
                 print("%dth insert %s" % (count, row[0]))
                 self.insert(row[0].lower(), freq)
-                self.elements.add(row[0].lower)
+                self.elements.add(row[0].lower())
 
 
 if __name__ == "__main__":
