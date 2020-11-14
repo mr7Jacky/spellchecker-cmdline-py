@@ -1,4 +1,5 @@
 import sys
+from src.HashTable2D import HashTable2D
 
 
 class Checker:
@@ -6,7 +7,7 @@ class Checker:
 
     def __init__(self, wordlist, num_candidates=5):
         """ Initialize function for Checker class
-        @type wordlist: HashTable
+        @type wordlist: HashTable2D
         @param wordlist: a dictionary contains all available words
         @type num_candidates: int
         @param num_candidates: the number of candidates to generate
@@ -26,7 +27,7 @@ class Checker:
         possible_words = Checker.generate_possible_words(str_in)
         candidates = self.linear_search(possible_words, str_in, self.num_candidates)
         if len(candidates) == 0:
-            candidates = self.linear_search(self.wordlist, str_in, self.num_candidates)
+            candidates = self.linear_search(self.wordlist.get_elements(), str_in, self.num_candidates)
         return candidates
 
     def file_checker(self, path):
@@ -45,7 +46,7 @@ class Checker:
 
         # correct spelling
         file_name = path.split('.')[0]
-        with open(path, 'r') as src_file, open(f'{file_name}_cort.txt', 'w+') as corrected_file:
+        with open(path, 'right') as src_file, open(f'{file_name}_cort.txt', 'w+') as corrected_file:
             lines = src_file.readlines()
             for line in lines:
                 line = self.split_helper(line, 0)
@@ -104,40 +105,41 @@ class Checker:
         """
         candidates = list(word for word in search_area if word in self.wordlist)
         # get top n candidates based on lcs score
-        # candidates = sorted(candidates, target=lambda x: Checker.lcs(target, x), reverse=True)
-        Checker.merge_sort_lcs(candidates, 0, len(candidates)-1, target)
+        self.merge_sort_lcs(candidates, 0, len(candidates)-1, target)
         ret = list(candidates)[0:num_candidates]
         return ret
 
-    @staticmethod
-    def merge_sort_lcs(arr, l, r, target):
-        if l < r:
-            m = (l+(r-1))//2
-            Checker.merge_sort_lcs(arr, l, m, target)
-            Checker.merge_sort_lcs(arr, m+1, r, target)
-            Checker.__merge_lcs(arr, l, m, r, target)
+    def merge_sort_lcs(self, arr, left, right, target):
+        if left < right:
+            m = (left + (right - 1)) // 2
+            self.merge_sort_lcs(arr, left, m, target)
+            self.merge_sort_lcs(arr, m + 1, right, target)
+            self.__merge_lcs(arr, left, m, right, target)
 
-    @staticmethod
-    def __merge_lcs(arr, l, m, r, target):
-        n1 = m - l + 1
-        n2 = r - m
+    def __merge_lcs(self, arr, left, mid, right, target):
+        n1 = mid - left + 1
+        n2 = right - mid
         # create temp arrays
         L = [0] * n1
         R = [0] * n2
         # Copy data to temp arrays L[] and R[]
         for i in range(0, n1):
-            L[i] = arr[l + i]
+            L[i] = arr[left + i]
         for j in range(0, n2):
-            R[j] = arr[m + 1 + j]
-        # Merge the temp arrays back into arr[l..r]
-        i, j, k = 0, 0, l
+            R[j] = arr[mid + 1 + j]
+        # Merge the temp arrays back into arr[left..right]
+        i, j, k = 0, 0, left
         while i < n1 and j < n2:
-            if Checker.lcs(target, L[i]) >= Checker.lcs(target,R[j]):
+            if Checker.lcs(target, L[i]) > Checker.lcs(target, R[j]):
                 arr[k] = L[i]
                 i += 1
             else:
-                arr[k] = R[j]
-                j += 1
+                if self.wordlist.search(L[i]).freq >= self.wordlist.search(R[i]).freq:
+                    arr[k] = L[i]
+                    i += 1
+                else:
+                    arr[k] = R[j]
+                    j += 1
             k += 1
         while i < n1:
             arr[k] = L[i]
@@ -155,7 +157,7 @@ class Checker:
         Dynamic programming button-up version of longest common subsequence
         runtime O(mn)
         where:
-            m is the length of first string
+            mid is the length of first string
             n is the length of second string
         @type first_str: str
         @param first_str: the first string to compare
@@ -200,7 +202,7 @@ class Checker:
         letters = 'abcdefghijklmnopqrstuvwxyz'
         surround_letter = {'q': 'wa', 'w': 'qase', 'e': 'wsdr', 'r': 'etdf', 't': 'rfgy', 'y': 'tghu', 'u': 'yjhi',
                            'i': 'uko', 'o': 'ilkp', 'p': 'ol', 'a': 'sqwz', 's': 'waxzd', 'd': 'serfcx', 'f': 'rtgdvc',
-                           'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'ok',
+                           'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'pok',
                            'z': 'axs', 'x': 'zcsd', 'c': 'xdfv', 'v': 'cfgb', 'b': 'vghn', 'n': 'bhjm', 'm': 'njk'}
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
         deletes = [L + R[1:] for L, R in splits if R]

@@ -83,15 +83,12 @@ class HashTable:
         return s
 
 
-
-
-
 if __name__ == "__main__":
     h = HashTable()
-    h.add(Word("haha",1))
-    h.add(Word("ahah",2))
-    h.add(Word("hehe",3))
-    h.add(Word("hahz",4))
-    h.add(Word('b',5))
+    h.add(Word("haha", 1))
+    h.add(Word("ahah", 2))
+    h.add(Word("hehe", 3))
+    h.add(Word("hahz", 4))
+    h.add(Word('b', 5))
     print(h)
     print("hoho" in h)

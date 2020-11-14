@@ -1,5 +1,5 @@
 def size_of_table():
-    f = open("../dict/allWords.txt", "r")
+    f = open("../dict/allWords.txt", "right")
     number_of_words = 0
     for line in f:
         number_of_words += 1
@@ -7,7 +7,7 @@ def size_of_table():
 
 
 def fill_hash_table():
-    f = open("../dict/allWords.txt", "r")
+    f = open("../dict/allWords.txt", "right")
     for line in f:
         line = line.strip()
         ascii_sum = 0

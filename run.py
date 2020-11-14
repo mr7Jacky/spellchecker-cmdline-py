@@ -15,7 +15,8 @@ def print_instruction():
 
 
 def store_data():
-    wordlist = Counter(re.findall(r'\w+', open('dict/allWords.txt').read().lower()))
+    wordlist = HashTable2D()
+    wordlist.fill_hash_table('./dict/allWords.csv')
     # Its important to use binary mode
     file = open('dict/dictionary', 'ab')
     # source, destination

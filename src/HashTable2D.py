@@ -8,6 +8,7 @@ class HashTable2D:
     def __init__(self):
         self.size = 0
         self.hash_tables = [HashTable(20) for _ in range(26)]
+        self.elements = set()
 
     def __str__(self):
         s = ''
@@ -30,15 +31,24 @@ class HashTable2D:
         """
         @type key: str
         @type freq: int
-        @type ascii_sum: int
         """
         newKey = Word(key, freq)
         idx = self.__hash(key)
+        self.size += 1
         self.hash_tables[idx].add(newKey)
 
     def search(self, target):
+        """
+        @rtype : Word
+        """
         idx = self.__hash(target[0])
         return self.hash_tables[idx].search(target)
+
+    def __contains__(self, item):
+        return self.search(item) is not None
+
+    def get_elements(self):
+        return self.elements
 
     def fill_hash_table(self, file_name):
         """
@@ -53,8 +63,9 @@ class HashTable2D:
             for row in readCSV:
                 freq = int(''.join(row[2].split(',')))
                 count += 1
-                print("Insert %dth %s" % (count, row[0]))
+                print("%dth insert %s" % (count, row[0]))
                 self.insert(row[0].lower(), freq)
+                self.elements.add(row[0].lower)
 
 
 if __name__ == "__main__":
