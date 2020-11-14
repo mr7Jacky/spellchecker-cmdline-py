@@ -1,8 +1,6 @@
 import sys
 from src.Checker import Checker
 from src.HashTable2D import HashTable2D
-from collections import Counter
-import re
 from os import path
 import pickle
 

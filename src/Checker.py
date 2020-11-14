@@ -46,7 +46,7 @@ class Checker:
 
         # correct spelling
         file_name = path.split('.')[0]
-        with open(path, 'right') as src_file, open(f'{file_name}_cort.txt', 'w+') as corrected_file:
+        with open(path, 'r') as src_file, open(f'{file_name}_cort.txt', 'w+') as corrected_file:
             lines = src_file.readlines()
             for line in lines:
                 line = self.split_helper(line, 0)
@@ -80,6 +80,7 @@ class Checker:
             if split_index == (len(split_order) - 1):
                 # word mode
                 lowered_word = string.lower()
+                print(len(lowered_word))
                 replaced_word = self.str_checker(lowered_word)[0]
                 if lowered_word[0] != string[0]:
                     # check if capitalized
