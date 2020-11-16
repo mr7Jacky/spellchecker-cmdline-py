@@ -202,7 +202,8 @@ class Checker:
         letters = 'abcdefghijklmnopqrstuvwxyz'
         surround_letter = {'q': 'wa', 'w': 'qase', 'e': 'wsdr', 'r': 'etdf', 't': 'rfgy', 'y': 'tghu', 'u': 'yjhi',
                            'i': 'uko', 'o': 'ilkp', 'p': 'ol', 'a': 'sqwz', 's': 'waxzd', 'd': 'serfcx', 'f': 'rtgdvc',
-                           'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'pok',
+                           'g': 'ftyvhb', 'h': 'gyujnb', 'j': 'huiknm', 'k': 'jiolm', 'l': 'pok', '.': '', '?': '',
+                           '!': '', ',': '', '\'': '', ';': '', ':': '',
                            'z': 'axs', 'x': 'zcsd', 'c': 'xdfv', 'v': 'cfgb', 'b': 'vghn', 'n': 'bhjm', 'm': 'njk'}
         splits = [(word[:i], word[i:]) for i in range(len(word) + 1)]
 
