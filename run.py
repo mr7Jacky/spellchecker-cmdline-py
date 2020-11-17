@@ -21,6 +21,7 @@ def store_data():
     """
     wordlist = HashTable2D()
     wordlist.fill_hash_table('./dict/allWords.csv')
+    print(wordlist)
     # Its important to use binary mode
     file = open('dict/.dictionary', 'ab')
     # source, destination

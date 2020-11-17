@@ -65,7 +65,7 @@ class HashTable:
         @return: the index in the hashtable
         """
         ascii_sum = 0
-        for i in range(0, int(len(word) / 2) + 1):
+        for i in range(int(len(word) / 2) + 1):
             ascii_sum += ord(word[i]) - ord('a')
         return ascii_sum % self.capacity
 

@@ -18,7 +18,7 @@ class HashTable2D:
             elements: store all the words
         """
         self.size = 0
-        self.hash_tables = [HashTable(20) for _ in range(26)]
+        self.hash_tables = [HashTable() for _ in range(26)]
         self.elements = set()
 
     def __str__(self):
