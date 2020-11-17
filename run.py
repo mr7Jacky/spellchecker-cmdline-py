@@ -47,7 +47,7 @@ def main():
         print_instruction()
         sys.exit()
     # test word list
-    if not path.exists("dict/dictionary"):
+    if not path.exists("dict/.dictionary"):
         store_data()
     wordlist = load_data()
     chk = Checker(wordlist)
