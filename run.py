@@ -6,6 +6,9 @@ import pickle
 
 
 def print_instruction():
+    """
+    Print the usage of the program
+    """
     print("Usage: run.py [mode] [input]")
     print("Parameter [mode] can be either 1 for string or 2 for text file.")
     print("If mode is 1, enter the string in [input].")
@@ -13,22 +16,33 @@ def print_instruction():
 
 
 def store_data():
+    """
+    Read a csv word list file and store as a HashTable2D object locally as dictionary
+    """
     wordlist = HashTable2D()
     wordlist.fill_hash_table('./dict/allWords.csv')
     # Its important to use binary mode
-    file = open('dict/dictionary', 'ab')
+    file = open('dict/.dictionary', 'ab')
     # source, destination
     pickle.dump(wordlist, file)
     file.close()
 
 
 def load_data():
+    """
+    Load the dictionary created before from file
+    """
     # for reading also binary mode is important
-    file = open('dict/dictionary', 'rb')
+    file = open('dict/.dictionary', 'rb')
     return pickle.load(file)
 
 
 def main():
+    """
+    Accept two input argument:
+        1. decided which mode to execute, either string check or file check
+        2. input string or path to file for checking
+    """
     if len(sys.argv) != 3:
         print_instruction()
         sys.exit()

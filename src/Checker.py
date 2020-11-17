@@ -110,6 +110,12 @@ class Checker:
         return ret
 
     def merge_sort_lcs(self, arr, left, right, target):
+        """ Merge sort the array based on the lcs score compare with target and frequency of the word
+        @param arr: array to sort
+        @param left: left point in array to sort
+        @param right: right point in array to sort
+        @param target: the target word to compare
+        """
         if left < right:
             m = (left + (right - 1)) // 2
             self.merge_sort_lcs(arr, left, m, target)
@@ -117,6 +123,13 @@ class Checker:
             self.__merge_lcs(arr, left, m, right, target)
 
     def __merge_lcs(self, arr, left, mid, right, target):
+        """ Helper function for merge sort based on frequency and lcs of the word
+        @param arr: array to sort
+        @param left: left point in array to sort
+        @param right: right point in array to sort
+        @param mid: middle point divide left and right
+        @param target: the target word to compare
+        """
         n1 = mid - left + 1
         n2 = right - mid
         # create temp arrays
