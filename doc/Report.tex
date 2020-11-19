@@ -182,7 +182,7 @@ This method is O(1) because it only does one calculation
         self.size += 1
         self.hash_tables[idx].add(newKey)
 \end{lstlisting}
-The first line creates a new object Word which is $O(1)$. $self.\_\_hash(key)$ is $O(1)$ as explained above. $self.size += 1$ is $O(1)$. The last line $self.hash\_tables[idx].add(newKey)$ uses method $add()$ of the hash table. $add()$ makes calls to 2 methods: $search()$ and $hash()$ of object HashTable. $search()$ is $O(\text{length of array at a specific index in a hash table})$ while $hash()$ is $O(\text{length of word}/ 2 + 1)$. $search()$ generally takes more time than $hash()$ so the time complexity of $insert()$ is $O(\text{length of array at a specific index in a hash table})$, which is the time complexity of $search()$.
+The first line creates a new object Word which is $O(1)$. $self.\_\_hash(key)$ is $O(1)$ as explained above. $self.size += 1$ is $O(1)$. The last line $self.hash\_tables[idx].add(newKey)$ uses method $add()$ of the hash table which is $O(1)$. Thus, this method is $O(1)$.
 
 \begin{lstlisting}[language=Python, basicstyle=\small]
     def search(self, target):
@@ -192,7 +192,7 @@ The first line creates a new object Word which is $O(1)$. $self.\_\_hash(key)$ i
         return self.hash_tables[idx].search(target)
 \end{lstlisting}
 
-Find the index of the correct hashtable to search is $O(1)$. The last line is a hash table at index $idx$ in array $self.hash\_table$ calling its method $search()$. $search()$ is $O(\text{length of array at a specific index in a hash table})$. Thus, the time complexity of the entire method is $O(\text{length of array at a specific index in a hash table})$
+Find the index of the correct hashtable to search is $O(1)$. The last line is a hash table at index $idx$ in array $self.hash\_table$ calling its method $search()$. $search()$ is $O(1)$. Thus, the time complexity of the entire method is $O(1)$
 
 \begin{lstlisting}[language=Python, basicstyle=\small]
     def fill_hash_table(self, file_name):
@@ -218,3 +218,4 @@ This function reads a CSV file that contains the words and their frequencies, th
 
 
 \end{document}
+
