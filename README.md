@@ -57,5 +57,5 @@ We use [run.py](run.py) to trigger the program; It does the following things:
 
 ## Reference 
 
-1. [Norvig](https://www.norvig.com/spell-correct.html)
+1. [Norvig](https://www.norvig.com/)
 2. [Academic Words](https://www.academicwords.info/)
