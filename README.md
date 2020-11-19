@@ -15,7 +15,8 @@ The first input is `mode` indicating whether to check file or string
 
 The second input is the string or the `.txt` file you want to check, it is either a sentence or the path to the text file.
 
-## Structure of project
+## Structure of project and Runtime
+#### [Full version Report](doc/Report.pdf)
 
 This project composite with 3 main parts:
 
@@ -47,7 +48,7 @@ Additionally, this hash table will extend dynamically according to the number of
  2. We can void there is too many empty location in it.
 
 #### Helper function
-``
+
 We use [run.py](run.py) to trigger the program; It does the following things:
 1. (First time use) Read from file, create a wordlist, and save it locally
 2. Load the wordlist from previously save file
